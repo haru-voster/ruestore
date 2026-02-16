@@ -81,8 +81,9 @@ let cart = [];
 // Map category names to IDs
 const categoryMap = {
     "all": [1,2,3,4,5,6,7,8,9],
-    "desktop": [1,2],    // desktops + laptops
+    "desktop": [2],    // desktops + laptops
     "laptop": [1],
+    "printer": [4],
     "phone": [8],
     "camera": [9],
     "accessory": [3]
@@ -124,8 +125,9 @@ function loadProducts(category = "all") {
                     </h4>
                 </div>
                 <div class="text-center mt-2">
-                    <button onclick="addToCart(${p.id})" style="padding:4px 8px; font-size:12px;">🛒 Add to Cart</button>
-                    <button onclick="sendToWhatsApp(${p.id})" style="padding:4px 8px; font-size:12px;">Place Order</button>
+                    <button onclick="addToCart(${p.id})" style="padding:4px 8px; font-size:12px;">🛒</button>
+                    <button onclick="sendToWhatsApp(${p.id})" style="padding:4px 8px; font-size:12px;">Buy Now
+</button>
                 </div>
             </div>
         `;
@@ -244,8 +246,9 @@ function showProductModal(productId) {
                 <h4>Features & Specs</h4>
                 ${specsHtml}
                 <div style="margin-top:10px;">
-                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒 Add to Cart</button>
-                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Place Order</button>
+                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒</button>
+                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Buy Now
+</button>
                 </div>
             </div>
         </div>
