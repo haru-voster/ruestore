@@ -73,30 +73,37 @@ const products = [
   // ==================== CAMERAS ====================
   {id:119,name:"Canon Camera",price:55000,oldPrice:65000,categoryId:9,image:"img/product04.png",description:"24MP HD Camera", specs:{}}
 ];
-function loadProducts(category="all") {
+// Load products function
+
+// Map category names to IDs
+const categoryMap = {
+    "all": [1,2,3,4,5,6,7,8,9],
+    "desktop": [2],    // desktops + laptops
+    "laptop": [1],
+    "phone": [8],
+    "camera": [9],
+    "accessory": [3]
+};
+
+// Load products by category
+function loadProducts(category = "all") {
     const container = document.getElementById("productContainer");
     container.innerHTML = "";
 
-    // Ensure container is flex
+    // Flex layout
     container.style.display = "flex";
     container.style.flexWrap = "wrap";
     container.style.gap = "10px";
 
-    let filtered;
+    // Get IDs for this category
+    const categoryIds = categoryMap[category.toLowerCase()] || [];
 
-    if (category === "all") {
-        filtered = products;
-    } else {
-        // Convert category string to categoryId
-        const categoryId = Object.keys(categories).find(
-            key => categories[key].toLowerCase() === category.toLowerCase()
-        );
-        filtered = products.filter(p => p.categoryId == categoryId);
-    }
+    // Filter products by category ID
+    const filtered = products.filter(p => categoryIds.includes(p.categoryId));
 
     filtered.forEach(p => {
         const productCard = document.createElement("div");
-        productCard.style.flex = "0 0 19%"; // 5 items per row with gaps
+        productCard.style.flex = "0 0 19%"; // 5 per row
         productCard.style.padding = "10px";
         productCard.style.boxSizing = "border-box";
 
@@ -123,53 +130,9 @@ function loadProducts(category="all") {
     });
 }
 
-// Show modal with product details
-function showProductModal(productId) {
-    const product = products.find(p => p.id === productId);
-    const modal = document.getElementById("productModal");
-    const content = document.getElementById("modalContent");
-
-    let specsHtml = "<ul>";
-    if (product.specs) {
-        for (const key in product.specs) {
-            specsHtml += `<li><strong>${key}:</strong> ${product.specs[key]}</li>`;
-        }
-    }
-    specsHtml += "</ul>";
-
-    content.innerHTML = `
-        <div style="display:flex; gap:15px; flex-wrap:wrap;">
-            <div style="flex:1 1 40%; text-align:center;">
-                <img src="${product.image}" style="width:100%; max-height:300px; object-fit:contain;">
-            </div>
-            <div style="flex:1 1 55%;">
-                <h2>${product.name}</h2>
-                <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
-                <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
-                <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
-                <p style="margin-top:10px;">${product.description}</p>
-
-                <h4>Features & Specs</h4>
-                ${specsHtml}
-
-                <div style="margin-top:10px;">
-                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒 Add to Cart</button>
-                    <button onclick="placeOrder(${product.id})" style="padding:6px 12px;">Place Order</button>
-                </div>
-            </div>
-        </div>
-    `;
-
-    modal.style.display = "flex";
-
-    document.getElementById("closeModal").onclick = () => {
-        modal.style.display = "none";
-    };
-}
-
-// Dummy cart/order functions
+// Dummy functions for testing
 function addToCart(id) { alert(`Product ${id} added to cart`); }
-function placeOrder(id) { alert(`Placing order for product ${id}`); }
+function showProductModal(id) { alert(`Show product ${id} modal`); }
 
 // Load all products on page load
-window.onload = () => loadProducts();
+window.onload = () => loadProducts("all");
