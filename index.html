@@ -144,8 +144,33 @@
 </div>
 </div>
 </div>
-<!-- Product Container -->
-<div id="productContainer" class="row"></div>
+<!-- HTML container -->
+<div id="productContainer" class="products-grid"></div>
+
+<style>
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 products per row */
+  gap: 20px;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-category {
+  font-weight: bold;
+  color: #555;
+}
+</style>
 
 
 

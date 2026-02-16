@@ -1,10 +1,14 @@
 
 const categories = {
-  1:"Laptops",
-  2:"Desktops",
-  3: "Smartphones",
-  4:"Accessories",
-  5:"Cameras"
+  1: "Laptops",
+  2: "Desktops",
+  3: "Accessories",
+  4: "Printers",
+  5: "Projectors",
+  6: "Network",
+  7: "Toners",
+  8: "Smartphones",
+  9: "Cameras"
 };
 
 const products = [
@@ -20,49 +24,55 @@ const products = [
   {id:109,name:"Macbook Pro 13 Retina",price:88000,oldPrice:95000,categoryId:1,image:"img/mac1.jpg",description:"Intel Core I7 13th gen, 32GB RAM, 512GB SSD, Retina Display"},
 
   // ==================== DESKTOPS ====================
-  {id:201,name:"HP Desktop 19inch",price:14500,oldPrice:18000,categoryId:2,image:"img/hp-desk.webp",description:"Intel Core i5 3.40GHz, 4GB RAM, 500GB HDD, 19\" Monitor, Keyboard & Mouse"},
-  {id:202,name:"Dell Optiplex 7040 19inch",price:24999,oldPrice:28000,categoryId:2,image:"img/dellopti.webp",description:"Intel i5-6500, 8GB RAM, 500GB HDD"},
-  {id:203,name:"All-in-One HP 205",price:50000,oldPrice:55000,categoryId:2,image:"img/hp-all.webp",description:"22\" FHD, AMD Ryzen 3050U, 4GB RAM, 1TB HDD, Windows 10 Pro"},
-  {id:204,name:"Lenovo Mini-PC M710q",price:18500,oldPrice:20000,categoryId:2,image:"img/lenovo-mini.jpg",description:"8GB RAM, 128GB SSD, Intel i5"},
-  {id:205,name:"HP Mini-PC EliteDesk 705 G4",price:18000,oldPrice:20000,categoryId:2,image:"img/hpdsk.webp",description:"Ryzen 5 2400G, 16GB RAM, 256GB SSD"},
-  {id:206,name:"Lenovo Desktop ThinkCentre",price:15000,oldPrice:18000,categoryId:2,image:"img/lenovodsk.webp",description:"Core i5 8th Gen, 8GB RAM, 500GB HDD"},
-  {id:207,name:"HP Gaming PC Pavilion",price:60000,oldPrice:65000,categoryId:2,image:"img/gaming1.webp",description:"Core i5 10400f, 16GB/512GB, 3.0GHz, 10th Gen"},
-  {id:208,name:"Lenovo Gaming PC ThinkStation",price:46000,oldPrice:50000,categoryId:2,image:"img/gaming2.webp",description:"Intel Xeon W-2123, 16GB RAM, 256GB SSD, Nvidia Quadro P2000"},
+  {id:110,name:"Dell Optiplex 7040 19inch",price:24999,oldPrice:28000,categoryId:2,image:"img/dellopti.webp",description:"Intel i5-6500, 8GB RAM, 500GB HDD"},
+  {id:111,name:"HP Desktop 19inch",price:14500,oldPrice:18000,categoryId:2,image:"img/hp-desk.webp",description:"Intel Core i5 3.40GHz, 4GB RAM, 500GB HDD, 19\" Monitor, Keyboard & Mouse"},
+  {id:112,name:"All-in-One HP 205",price:50000,oldPrice:55000,categoryId:2,image:"img/hp-all.webp",description:"22\" FHD, AMD Ryzen 3050U, 4GB RAM, 1TB HDD, Windows 10 Pro"},
+  {id:113,name:"Lenovo Mini-PC M710q",price:18500,oldPrice:20000,categoryId:2,image:"img/lenovo-mini.jpg",description:"8GB RAM, 128GB SSD, Intel i5"},
+  {id:114,name:"HP Mini-PC EliteDesk 705 G4",price:18000,oldPrice:20000,categoryId:2,image:"img/hpdsk.webp",description:"Ryzen 5 2400G, 16GB RAM, 256GB SSD"},
+  {id:115,name:"Lenovo Desktop ThinkCentre",price:15000,oldPrice:18000,categoryId:2,image:"img/lenovodsk.webp",description:"Core i5 8th Gen, 8GB RAM, 500GB HDD"},
+  {id:116,name:"HP Gaming PC Pavilion",price:60000,oldPrice:65000,categoryId:2,image:"img/gaming1.webp",description:"Core i5 10400f, 16GB/512GB, 3.0GHz, 10th Gen"},
+  {id:117,name:"Lenovo Gaming PC ThinkStation",price:46000,oldPrice:50000,categoryId:2,image:"img/gaming2.webp",description:"Intel Xeon W-2123, 16GB RAM, 256GB SSD, Nvidia Quadro P2000"},
 
   // ==================== ACCESSORIES ====================
-  {id:301,name:"External SSD 2TB",price:23000,oldPrice:25000,categoryId:3,image:"img/external.jpeg",description:"Dahua T7 Portable SSD 2TB USB 3.2 Gen2"},
-  {id:302,name:"VGA Display Cable",price:500,oldPrice:700,categoryId:3,image:"img/vga.jpg",description:"Computer-monitor VGA display 1M"},
-  {id:303,name:"HDMI to VGA Adapter",price:1500,oldPrice:2000,categoryId:3,image:"img/HDMI-VGA.jpg",description:"1080px for PC/laptop/Desktops"},
-  {id:304,name:"USB Keyboard Wired",price:1500,oldPrice:1800,categoryId:3,image:"img/wired.jpg",description:"Logitech K120 Wired Keyboard for Windows, Plug and Play"},
-  {id:305,name:"Wireless Keyboard & Mouse Combo",price:4000,oldPrice:4500,categoryId:3,image:"img/keymouse.png",description:"Hp-655-wireless-keyboard-and-mouse-combo"},
-  {id:306,name:"Wireless Mouse",price:600,oldPrice:800,categoryId:3,image:"img/mouse.webp",description:"Wireless + Bluetooth mouse"},
-  {id:307,name:"Laptop Charger HP",price:1500,oldPrice:1800,categoryId:3,image:"img/hpcharger.webp",description:"HP 19.5V-2.31A 45W Blue Pin Adapter Original"},
-  {id:308,name:"Hard Disk Drive SATA 500GB",price:2000,oldPrice:2500,categoryId:3,image:"img/storage1.jpeg",description:"500GB SATA Drive"},
-  {id:309,name:"ASUS Motherboard B760M-A",price:2000,oldPrice:2500,categoryId:3,image:"img/asusboard.jpg",description:"DDR5 Micro-ATX Gaming Motherboard"},
+  {id:118,name:"Gaming Headset",price:4500,oldPrice:6000,categoryId:3,image:"img/product03.png",description:"RGB Noise Canceling"},
+  {id:121,name:"External SSD 2TB",price:23000,oldPrice:25000,categoryId:3,image:"img/external.jpeg",description:"Dahua T7 Portable SSD 2TB USB 3.2 Gen2"},
+  {id:122,name:"VGA Display Cable",price:500,oldPrice:700,categoryId:3,image:"img/vga.jpg",description:"Computer-monitor VGA display 1M"},
+  {id:123,name:"HDMI to VGA Adapter",price:1500,oldPrice:2000,categoryId:3,image:"img/HDMI-VGA.jpg",description:"1080px for PC/laptop/Desktops"},
+  {id:124,name:"USB Keyboard Wired",price:1500,oldPrice:1800,categoryId:3,image:"img/wired.jpg",description:"Logitech K120 Wired Keyboard for Windows, Plug and Play"},
+  {id:125,name:"Wireless Keyboard & Mouse Combo",price:4000,oldPrice:4500,categoryId:3,image:"img/keymouse.png",description:"Hp-655-wireless-keyboard-and-mouse-combo"},
+  {id:126,name:"Wireless Mouse",price:600,oldPrice:800,categoryId:3,image:"img/mouse.webp",description:"Wireless + Bluetooth mouse"},
+  {id:127,name:"Laptop Charger HP",price:1500,oldPrice:1800,categoryId:3,image:"img/hpcharger.webp",description:"HP 19.5V-2.31A 45W Blue Pin Adapter Original"},
+  {id:128,name:"Hard Disk Drive SATA 500GB",price:2000,oldPrice:2500,categoryId:3,image:"img/storage1.jpeg",description:"500GB SATA Drive"},
+  {id:129,name:"ASUS Motherboard B760M-A",price:2000,oldPrice:2500,categoryId:3,image:"img/asusboard.jpg",description:"DDR5 Micro-ATX Gaming Motherboard"},
 
   // ==================== PRINTERS ====================
-  {id:401,name:"HP Inkjet All-in-One",price:24500,oldPrice:28000,categoryId:4,image:"img/hp printer.webp",description:"Inkjet, Ethernet WIFI support"},
-  {id:402,name:"Canon All-in-One Pro",price:23999,oldPrice:27000,categoryId:4,image:"img/canone2.webp",description:"Printing, photocopying/scanning"},
-  {id:403,name:"Canon All-in-One",price:10999,oldPrice:13000,categoryId:4,image:"img/canon.png",description:"Canon printer, WIFI support"},
-  {id:404,name:"Epison Printer L3250",price:20999,oldPrice:23000,categoryId:4,image:"img/epson-l3250.jpg",description:"WIFI/Bluetooth/USB enabled"},
+  {id:130,name:"HP Inkjet All-in-One",price:24500,oldPrice:28000,categoryId:4,image:"img/hp printer.webp",description:"Inkjet, Ethernet WIFI support"},
+  {id:131,name:"Canon All-in-One Pro",price:23999,oldPrice:27000,categoryId:4,image:"img/canone2.webp",description:"Printing, photocopying/scanning"},
+  {id:132,name:"Canon All-in-One",price:10999,oldPrice:13000,categoryId:4,image:"img/canon.png",description:"Canon printer, WIFI support"},
+  {id:133,name:"Epison Printer L3250",price:20999,oldPrice:23000,categoryId:4,image:"img/epson-l3250.jpg",description:"WIFI/Bluetooth/USB enabled"},
 
   // ==================== PROJECTORS ====================
-  {id:501,name:"T5 Wifi Projector",price:25999,oldPrice:28000,categoryId:5,image:"img/t5.webp",description:"T5 wifi projector with HD camera"},
-  {id:502,name:"Epson EB-E01 Projector",price:45000,oldPrice:48000,categoryId:5,image:"img/espon.webp",description:"XGA 3300 Lumens Projector, Portable and quick to set up"},
+  {id:134,name:"T5 Wifi Projector",price:25999,oldPrice:28000,categoryId:5,image:"img/t5.webp",description:"T5 wifi projector with HD camera"},
+  {id:135,name:"Epson EB-E01 Projector",price:45000,oldPrice:48000,categoryId:5,image:"img/espon.webp",description:"XGA 3300 Lumens Projector, Portable and quick to set up"},
 
   // ==================== NETWORK ====================
-  {id:601,name:"DP-LINK POE Switch",price:48500,oldPrice:52000,categoryId:6,image:"img/dlink.png",description:"D-Link DGS-1210-28P 28-Port Gigabit PoE Switch"},
-  {id:602,name:"Starlink Full Kit Gen4",price:48000,oldPrice:50000,categoryId:6,image:"img/starlink.jpg",description:"Standard Starlink kit version 4 gen3"},
-  {id:603,name:"4G M-Wifi Modem",price:2500,oldPrice:3000,categoryId:6,image:"img/modem.webp",description:"Portable SIM card 4G WiFi"},
-  {id:604,name:"Mikrotik Router RB750GR3",price:7000,oldPrice:9000,categoryId:6,image:"img/mikrouter.webp",description:"Mikrotik hEX Router"},
-  {id:605,name:"Hikvision Cat6 Cable 305M",price:17500,oldPrice:20000,categoryId:6,image:"img/cat6.webp",description:"Orange 305m CAT6 U/UTP Network Cable"},
+  {id:136,name:"DP-LINK POE Switch",price:48500,oldPrice:52000,categoryId:6,image:"img/dlink.png",description:"D-Link DGS-1210-28P 28-Port Gigabit PoE Switch"},
+  {id:137,name:"Starlink Full Kit Gen4",price:48000,oldPrice:50000,categoryId:6,image:"img/starlink.jpg",description:"Standard Starlink kit version 4 gen3"},
+  {id:138,name:"4G M-Wifi Modem",price:2500,oldPrice:3000,categoryId:6,image:"img/modem.webp",description:"Portable SIM card 4G WiFi"},
+  {id:139,name:"Mikrotik Router RB750GR3",price:7000,oldPrice:9000,categoryId:6,image:"img/mikrouter.webp",description:"Mikrotik hEX Router"},
+  {id:140,name:"Hikvision Cat6 Cable 305M",price:17500,oldPrice:20000,categoryId:6,image:"img/cat6.webp",description:"Orange 305m CAT6 U/UTP Network Cable"},
 
   // ==================== TONERS ====================
-  {id:701,name:"Epson ECOTANK",price:1500,oldPrice:1800,categoryId:7,image:"img/epsonink.webp",description:"Epson pure Cyan, Yellow, Majenta, Blue, Black econtank bottles"},
-  {id:702,name:"Kyocera Minolta Toner",price:4000,oldPrice:4500,categoryId:7,image:"img/ky2.jpg",description:"Konica Minolta Bizhub C220 /C280 /C360 Toner TN-216/319"},
-  {id:703,name:"HP LaserJet Toner 59A",price:12000,oldPrice:14000,categoryId:7,image:"img/lasertoner.webp",description:"Original LaserJet Toner Cartridge"}
-];
+  {id:141,name:"Epson ECOTANK",price:1500,oldPrice:1800,categoryId:7,image:"img/epsonink.webp",description:"Epson pure Cyan, Yellow, Majenta, Blue, Black econtank bottles"},
+  {id:142,name:"Kyocera Minolta Toner",price:4000,oldPrice:4500,categoryId:7,image:"img/ky2.jpg",description:"Konica Minolta Bizhub C220 /C280 /C360 Toner TN-216/319"},
+  {id:143,name:"HP LaserJet Toner 59A",price:12000,oldPrice:14000,categoryId:7,image:"img/lasertoner.webp",description:"Original LaserJet Toner Cartridge"},
 
+  // ==================== SMARTPHONES ====================
+  {id:120,name:"Samsung Galaxy S22",price:85000,oldPrice:95000,categoryId:8,image:"img/product05.png",description:"128GB Storage"},
+
+  // ==================== CAMERAS ====================
+  {id:119,name:"Canon Camera",price:55000,oldPrice:65000,categoryId:9,image:"img/product04.png",description:"24MP HD Camera"}
+];
 
 function loadProducts(category="all"){
 const container=document.getElementById("productContainer");
