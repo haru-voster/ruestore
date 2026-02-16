@@ -75,10 +75,13 @@ const products = [
 ];
 // Load products function
 
+// Cart array
+let cart = [];
+
 // Map category names to IDs
 const categoryMap = {
     "all": [1,2,3,4,5,6,7,8,9],
-    "desktop": [2],    // desktops + laptops
+    "desktop": [1,2],    // desktops + laptops
     "laptop": [1],
     "phone": [8],
     "camera": [9],
@@ -122,17 +125,135 @@ function loadProducts(category = "all") {
                 </div>
                 <div class="text-center mt-2">
                     <button onclick="addToCart(${p.id})" style="padding:4px 8px; font-size:12px;">🛒 Add to Cart</button>
-                    <button onclick="showProductModal(${p.id})" style="padding:4px 8px; font-size:12px;">Place Order</button>
+                    <button onclick="sendToWhatsApp(${p.id})" style="padding:4px 8px; font-size:12px;">Place Order</button>
                 </div>
             </div>
         `;
         container.appendChild(productCard);
     });
+
+    updateCartUI();
 }
 
-// Dummy functions for testing
-function addToCart(id) { alert(`Product ${id} added to cart`); }
-function showProductModal(id) { alert(`Show product ${id} modal`); }
+// Add product to cart
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.qty += 1; // increase quantity if already in cart
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+
+    updateCartUI();
+}
+
+// Remove product from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+}
+
+// Update cart display and total
+function updateCartUI() {
+    const cartContainer = document.getElementById("cartContainer");
+    if (!cartContainer) return;
+
+    cartContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.qty;
+        const div = document.createElement("div");
+        div.style.display = "flex";
+        div.style.justifyContent = "space-between";
+        div.style.marginBottom = "5px";
+        div.innerHTML = `
+            <span>${item.name} x ${item.qty}</span>
+            <span>Ksh ${(item.price * item.qty).toLocaleString()}</span>
+            <button onclick="removeFromCart(${item.id})" style="padding:0 5px;">❌</button>
+        `;
+        cartContainer.appendChild(div);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.style.fontWeight = "bold";
+    totalDiv.style.marginTop = "10px";
+    totalDiv.innerText = `Total: Ksh ${total.toLocaleString()}`;
+    cartContainer.appendChild(totalDiv);
+}
+
+// Send product info or cart to WhatsApp
+function sendToWhatsApp(productId = null) {
+    let message = "Hello, I want to order the following items:\n\n";
+
+    if (productId) {
+        // Single product from card or modal
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        message += `Name: ${product.name}\nPrice: Ksh ${product.price.toLocaleString()}\nDescription: ${product.description}\nImage: ${window.location.origin}/${product.image}`;
+    } else {
+        // Send full cart
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+        cart.forEach(item => {
+            message += `${item.name} x ${item.qty} - Ksh ${(item.price * item.qty).toLocaleString()}\n`;
+        });
+        const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        message += `\nTotal: Ksh ${total.toLocaleString()}`;
+    }
+
+    const phoneNumber = "254708466793";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+}
+
+// Show product modal
+function showProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    const modal = document.getElementById("productModal");
+    const content = document.getElementById("modalContent");
+
+    if (!product) return;
+
+    let specsHtml = "<ul>";
+    if (product.specs) {
+        for (const key in product.specs) {
+            specsHtml += `<li><strong>${key}:</strong> ${product.specs[key]}</li>`;
+        }
+    } else {
+        specsHtml += "<li>No specs available</li>";
+    }
+    specsHtml += "</ul>";
+
+    content.innerHTML = `
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <div style="flex:1 1 40%; text-align:center;">
+                <img src="${product.image}" style="width:100%; max-height:300px; object-fit:contain;">
+            </div>
+            <div style="flex:1 1 55%;">
+                <h2>${product.name}</h2>
+                <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
+                <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
+                <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
+                <p style="margin-top:10px;">${product.description}</p>
+                <h4>Features & Specs</h4>
+                ${specsHtml}
+                <div style="margin-top:10px;">
+                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒 Add to Cart</button>
+                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Place Order</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    modal.style.display = "flex";
+    document.getElementById("closeModal").onclick = () => { modal.style.display = "none"; };
+}
 
 // Load all products on page load
 window.onload = () => loadProducts("all");
