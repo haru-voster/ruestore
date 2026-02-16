@@ -13,7 +13,7 @@ const categories = {
 
 const products = [
   // ==================== LAPTOPS ====================
-  {id:101,name:"HP Envy X360",price:170000,oldPrice:180000,categoryId:1,image:"img/hp envy.jpg",description:"Intel Iris Xe Graphics, Backlight Keyboard, 14 inch FHD, 13th Gen Core i7, 16GB, 1TB SSD"},
+  {id:101,name:"HP Envy X360 Brand",price:170000,oldPrice:180000,categoryId:1,image:"img/hp envy.jpg",description:"Intel Iris Xe Graphics, Backlight Keyboard, 14 inch FHD, 13th Gen Core i7, 16GB, 1TB SSD"},
   {id:102,name:"HP EliteBook 840 G5",price:30000,oldPrice:35000,categoryId:1,image:"img/new2.jpg",description:"Intel Core i7 10th Gen, 14 FHD 840 G5 - 8GB / 256GB"},
   {id:103,name:"HP EliteBook 840 G7",price:45000,oldPrice:50000,categoryId:1,image:"img/new.webp",description:"Intel Core i7 10th Gen, 14 FHD 840 G7 - 16GB / 512GB"},
   {id:104,name:"Lenovo IdeaPad Flex 5",price:39000,oldPrice:45000,categoryId:1,image:"img/lenovo2.webp",description:"Integrated Intel Iris Xe graphics 512SSD / 16GB"},
