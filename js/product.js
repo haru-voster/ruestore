@@ -74,37 +74,122 @@ const products = [
   {id:119,name:"Canon Camera",price:55000,oldPrice:65000,categoryId:9,image:"img/product04.png",description:"24MP HD Camera"}
 ];
 
-function loadProducts(category="all"){
-const container=document.getElementById("productContainer");
-container.innerHTML="";
+// function loadProducts(category="all"){
+// const container=document.getElementById("productContainer");
+// container.innerHTML="";
 
-const filtered = category==="all"
-? products
-: products.filter(p=>categories[p.categoryId].toLowerCase().includes(category));
+// const filtered = category==="all"
+// ? products
+// : products.filter(p=>categories[p.categoryId].toLowerCase().includes(category));
 
-let html="";
+// let html="";
 
-filtered.forEach(p=>{
-html+=`
-<div class="col-md-3 col-xs-6">
-<div class="product">
-<div class="product-img">
-<img src="${p.image}">
-</div>
-<div class="product-body">
-<p class="product-category">${categories[p.categoryId]}</p>
-<h3 class="product-name">${p.name}</h3>
-<h4 class="product-price">Ksh ${p.price.toLocaleString()}
-<del class="product-old-price">Ksh ${p.oldPrice.toLocaleString()}</del>
-</h4>
-<p>${p.description}</p>
-</div>
-</div>
-</div>
-`;
-});
+// filtered.forEach(p=>{
+// html+=`
+// <div class="col-md-3 col-xs-6">
+// <div class="product">
+// <div class="product-img">
+// <img src="${p.image}">
+// </div>
+// <div class="product-body">
+// <p class="product-category">${categories[p.categoryId]}</p>
+// <h3 class="product-name">${p.name}</h3>
+// <h4 class="product-price">Ksh ${p.price.toLocaleString()}
+// <del class="product-old-price">Ksh ${p.oldPrice.toLocaleString()}</del>
+// </h4>
+// <p>${p.description}</p>
+// </div>
+// </div>
+// </div>
+// `;
+// });
 
-container.innerHTML=html;
+// container.innerHTML=html;
+// }
+
+// window.onload=()=>loadProducts();
+function loadProducts(category="all") {
+    const container = document.getElementById("productContainer");
+    container.innerHTML = "";
+
+    const filtered = category === "all" 
+        ? products 
+        : products.filter(p => p.categoryId === category);
+
+    filtered.forEach(p => {
+        const productCard = document.createElement("div");
+        productCard.style.flex = "0 0 20%"; // 5 items per row
+        productCard.style.padding = "10px";
+        productCard.style.boxSizing = "border-box";
+
+        productCard.innerHTML = `
+            <div class="product border p-2 h-100" style="font-size:12px;">
+                <div class="product-img text-center" style="cursor:pointer;" onclick="showProductModal(${p.id})">
+                    <img src="${p.image}" class="img-fluid" style="max-height:120px; object-fit:contain;">
+                </div>
+                <div class="product-body mt-2">
+                    <p class="product-category" style="margin:0; font-size:10px;">${categories[p.categoryId]}</p>
+                    <h3 class="product-name" style="margin:2px 0; font-size:12px;">${p.name}</h3>
+                    <h4 class="product-price" style="margin:2px 0; font-size:12px;">
+                        Ksh ${p.price.toLocaleString()}
+                        <del style="font-size:10px; color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                    </h4>
+                </div>
+                <div class="text-center mt-2">
+                    <button onclick="addToCart(${p.id})" style="padding:4px 8px; font-size:12px;">🛒 Add to Cart</button>
+                    <button onclick="showProductModal(${p.id})" style="padding:4px 8px; font-size:12px;">Place Order</button>
+                </div>
+            </div>
+        `;
+        container.appendChild(productCard);
+    });
 }
 
-window.onload=()=>loadProducts();
+// Show modal with product details
+function showProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    const modal = document.getElementById("productModal");
+    const content = document.getElementById("modalContent");
+
+    let specsHtml = "<ul>";
+    for (const key in product.specs) {
+        specsHtml += `<li><strong>${key}:</strong> ${product.specs[key]}</li>`;
+    }
+    specsHtml += "</ul>";
+
+    content.innerHTML = `
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <div style="flex:1 1 40%; text-align:center;">
+                <img src="${product.image}" style="width:100%; max-height:300px; object-fit:contain;">
+            </div>
+            <div style="flex:1 1 55%;">
+                <h2>${product.name}</h2>
+                <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
+                <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
+                <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
+                <p style="margin-top:10px;">${product.description}</p>
+
+                <h4>Features & Specs</h4>
+                ${specsHtml}
+
+                <div style="margin-top:10px;">
+                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒 Add to Cart</button>
+                    <button onclick="placeOrder(${product.id})" style="padding:6px 12px;">Place Order</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    modal.style.display = "flex";
+
+    document.getElementById("closeModal").onclick = () => {
+        modal.style.display = "none";
+    };
+}
+
+// Dummy cart/order functions
+function addToCart(id) { alert(`Product ${id} added to cart`); }
+function placeOrder(id) { alert(`Placing order for product ${id}`); }
+
+// Load all products on page load
+window.onload = () => loadProducts();
