@@ -1,4 +1,3 @@
-
 const categories = {
   1: "Laptops",
   2: "Desktops",
@@ -73,103 +72,94 @@ const products = [
   // ==================== CAMERAS ====================
   {id:119,name:"Canon Camera",price:55000,oldPrice:65000,categoryId:9,image:"img/product04.png",description:"24MP HD Camera", specs:{}}
 ];
-// Load products function
 
-// Cart array
+// ==================== CART ====================
 let cart = [];
 
-// Map category names to IDs
 const categoryMap = {
-    "all": [1,2,3,4,5,6,7,8,9],
-    "desktop": [2],    // desktops + laptops
-    "laptop": [1],
-    "printer": [4],
-    "phone": [8],
-    "camera": [9],
-    "accessory": [3]
+  "all": [1,2,3,4,5,6,7,8,9],
+  "desktop": [2],
+  "laptop": [1],
+  "printer": [4],
+  "phone": [8],
+  "camera": [9],
+  "accessory": [3]
 };
 
-// Load products by category
+// ==================== LOAD PRODUCTS ====================
 function loadProducts(category = "all") {
     const container = document.getElementById("productContainer");
+    if (!container) return;
     container.innerHTML = "";
-
-    // Flex layout
     container.style.display = "flex";
     container.style.flexWrap = "wrap";
     container.style.gap = "10px";
 
-    // Get IDs for this category
     const categoryIds = categoryMap[category.toLowerCase()] || [];
-
-    // Filter products by category ID
     const filtered = products.filter(p => categoryIds.includes(p.categoryId));
 
     filtered.forEach(p => {
-        const productCard = document.createElement("div");
-        productCard.style.flex = "0 0 19%"; // 5 per row
-        productCard.style.padding = "10px";
-        productCard.style.boxSizing = "border-box";
+        const card = document.createElement("div");
+        card.style.flex = "0 0 19%";
+        card.style.padding = "10px";
+        card.style.boxSizing = "border-box";
 
-        productCard.innerHTML = `
-                <div class="product border p-2 h-100 product-card">
-
-                    <div class="product-img" onclick="showProductModal(${p.id})">
-
-                        <img src="${p.image}" class="img-fluid">
-
-                        <div class="floating-buttons">
-                            <button class="cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
-                            <button class="buy-btn" onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
-                        </div>
-
-                    </div>
-
-                    <div class="product-body mt-2">
-                        <p class="product-category">${categories[p.categoryId]}</p>
-                        <h3 class="product-name">${p.name}</h3>
-                        <h4 class="product-price">
-                            Ksh ${p.price.toLocaleString()}
-                            <del>Ksh ${p.oldPrice.toLocaleString()}</del>
-                        </h4>
-                    </div>
-
+        card.innerHTML = `
+        <div class="product border p-2 h-100 product-card">
+            <div class="product-img" onclick="showProductModal(${p.id})" style="position:relative; cursor:pointer;">
+                <img src="${p.image}" class="img-fluid" style="max-height:150px; object-fit:contain;">
+                <div class="floating-buttons" style="position:absolute; bottom:5px; right:5px; display:flex; gap:5px;">
+                    <button onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
+                    <button onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
                 </div>
-                `;
-
-        container.appendChild(productCard);
+            </div>
+            <div class="product-body mt-2">
+                <p>${categories[p.categoryId]}</p>
+                <h3>${p.name}</h3>
+                <h4>
+                    Ksh ${p.price.toLocaleString()} 
+                    <del style="color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                </h4>
+            </div>
+        </div>`;
+        container.appendChild(card);
     });
 
     updateCartUI();
 }
 
-// Add product to cart
+// ==================== CART FUNCTIONS ====================
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
     const existing = cart.find(item => item.id === productId);
-    if (existing) {
-        existing.qty += 1; // increase quantity if already in cart
-    } else {
-        cart.push({ ...product, qty: 1 });
-    }
+    if (existing) existing.qty += 1;
+    else cart.push({ ...product, qty: 1 });
 
     updateCartUI();
 }
 
-// Remove product from cart
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCartUI();
 }
 
-// Update cart display and total
 function updateCartUI() {
+    const cartCount = document.getElementById("cartCount");
     const cartContainer = document.getElementById("cartContainer");
-    if (!cartContainer) return;
+    if (!cartCount || !cartContainer) return;
+
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCount.innerText = totalQty;
 
     cartContainer.innerHTML = "";
+    if (cart.length === 0) {
+        cartContainer.style.display = "none";
+        return;
+    }
+
+    cartContainer.style.display = "block";
     let total = 0;
 
     cart.forEach(item => {
@@ -181,8 +171,7 @@ function updateCartUI() {
         div.innerHTML = `
             <span>${item.name} x ${item.qty}</span>
             <span>Ksh ${(item.price * item.qty).toLocaleString()}</span>
-            <button onclick="removeFromCart(${item.id})" style="padding:0 5px;">❌</button>
-        `;
+            <button onclick="removeFromCart(${item.id})" style="padding:0 5px; cursor:pointer;">❌</button>`;
         cartContainer.appendChild(div);
     });
 
@@ -193,24 +182,17 @@ function updateCartUI() {
     cartContainer.appendChild(totalDiv);
 }
 
-// Send product info or cart to WhatsApp
+// ==================== WHATSAPP ====================
 function sendToWhatsApp(productId = null) {
     let message = "Hello, I want to order the following items:\n\n";
 
     if (productId) {
-        // Single product from card or modal
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-        message += `Name: ${product.name}\nPrice: Ksh ${product.price.toLocaleString()}\nDescription: ${product.description}\nImage: ${window.location.origin}/${product.image}`;
+        const p = products.find(x => x.id === productId);
+        if (!p) return;
+        message += `Name: ${p.name}\nPrice: Ksh ${p.price.toLocaleString()}\nDescription: ${p.description}\nImage: ${window.location.origin}/${p.image}`;
     } else {
-        // Send full cart
-        if (cart.length === 0) {
-            alert("Your cart is empty!");
-            return;
-        }
-        cart.forEach(item => {
-            message += `${item.name} x ${item.qty} - Ksh ${(item.price * item.qty).toLocaleString()}\n`;
-        });
+        if (cart.length === 0) return alert("Your cart is empty!");
+        cart.forEach(item => message += `${item.name} x ${item.qty} - Ksh ${(item.price * item.qty).toLocaleString()}\n`);
         const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
         message += `\nTotal: Ksh ${total.toLocaleString()}`;
     }
@@ -220,65 +202,46 @@ function sendToWhatsApp(productId = null) {
     window.open(whatsappURL, "_blank");
 }
 
-// Show product modal
+// ==================== PRODUCT MODAL ====================
 function showProductModal(productId) {
     const product = products.find(p => p.id === productId);
+    if (!product) return;
+
     const modal = document.getElementById("productModal");
     const content = document.getElementById("modalContent");
 
-    if (!product) return;
-
     let specsHtml = "<ul>";
-    if (product.specs) {
-        for (const key in product.specs) {
-            specsHtml += `<li><strong>${key}:</strong> ${product.specs[key]}</li>`;
-        }
-    } else {
-        specsHtml += "<li>No specs available</li>";
-    }
+    for (const key in product.specs) specsHtml += `<li><strong>${key}:</strong> ${product.specs[key]}</li>`;
+    if (Object.keys(product.specs).length === 0) specsHtml += "<li>No specs available</li>";
     specsHtml += "</ul>";
 
     content.innerHTML = `
-        <div style="display:flex; gap:15px; flex-wrap:wrap;">
-            <div style="flex:1 1 40%; text-align:center;">
-                <img src="${product.image}" style="width:100%; max-height:300px; object-fit:contain;">
-            </div>
-            <div style="flex:1 1 55%;">
-                <h2>${product.name}</h2>
-                <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
-                <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
-                <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
-                <p style="margin-top:10px;">${product.description}</p>
-                <h4>Features & Specs</h4>
-                ${specsHtml}
-               <div style="position: relative; margin-top: 20px;">
-
-                <!-- Cart Button -->
-                <button class="modal-cart-btn" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
-
-                <!-- Buy Now / WhatsApp -->
-                <button class="modal-buy-btn" onclick="sendToWhatsApp(${product.id})">Buy Now</button>
-
-            </div>
-
+    <div style="display:flex; gap:15px; flex-wrap:wrap;">
+        <div style="flex:1 1 40%; text-align:center;">
+            <img src="${product.image}" style="width:100%; max-height:300px; object-fit:contain;">
+        </div>
+        <div style="flex:1 1 55%;">
+            <h2>${product.name}</h2>
+            <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
+            <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
+            <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
+            <p style="margin-top:10px;">${product.description}</p>
+            <h4>Features & Specs</h4>
+            ${specsHtml}
+            <div style="margin-top:20px;">
+                <button onclick="addToCart(${product.id})">🛒 Add to Cart</button>
+                <button onclick="sendToWhatsApp(${product.id})">Buy Now</button>
             </div>
         </div>
-    `;
+    </div>`;
 
     modal.style.display = "flex";
-    document.getElementById("closeModal").onclick = () => { modal.style.display = "none"; };
+    document.getElementById("closeModal").onclick = () => modal.style.display = "none";
 }
 
-/// serach filter
-
-/* ================= SEARCH SYSTEM (NON-DESTRUCTIVE) ================= */
-
-// live suggestions dropdown
+// ==================== SEARCH SYSTEM ====================
 const searchInput = document.getElementById("searchInput");
-
 if (searchInput) {
-
-    // create suggestion box
     const suggestionBox = document.createElement("div");
     suggestionBox.style.position = "absolute";
     suggestionBox.style.background = "#fff";
@@ -290,18 +253,10 @@ if (searchInput) {
     suggestionBox.style.display = "none";
     searchInput.parentNode.appendChild(suggestionBox);
 
-    // typing event
     searchInput.addEventListener("keyup", function () {
-
         const text = this.value.toLowerCase().trim();
-
         suggestionBox.innerHTML = "";
-
-        if (!text) {
-            suggestionBox.style.display = "none";
-            loadProducts("all");
-            return;
-        }
+        if (!text) { suggestionBox.style.display = "none"; loadProducts("all"); return; }
 
         const matches = products.filter(p =>
             p.name.toLowerCase().includes(text) ||
@@ -309,86 +264,63 @@ if (searchInput) {
             categories[p.categoryId].toLowerCase().includes(text)
         );
 
-        // show results on dashboard
         renderSearchResults(matches);
 
-        // suggestions list
         matches.slice(0,5).forEach(p => {
             const item = document.createElement("div");
             item.innerText = p.name;
             item.style.padding = "6px";
             item.style.cursor = "pointer";
-
             item.onmouseenter = () => item.style.background="#f1f1f1";
             item.onmouseleave = () => item.style.background="#fff";
-
-            item.onclick = () => {
-                searchInput.value = p.name;
-                suggestionBox.style.display="none";
-                renderSearchResults([p]);
-            };
-
+            item.onclick = () => { searchInput.value = p.name; suggestionBox.style.display="none"; renderSearchResults([p]); };
             suggestionBox.appendChild(item);
         });
 
         suggestionBox.style.display = matches.length ? "block" : "none";
     });
 
-    // hide suggestions when clicking outside
-    document.addEventListener("click", e=>{
-        if(!searchInput.contains(e.target))
-            suggestionBox.style.display="none";
+    document.addEventListener("click", e => {
+        if (!searchInput.contains(e.target)) suggestionBox.style.display = "none";
     });
 }
 
-
-// render search results using SAME layout as loadProducts
+// ==================== RENDER SEARCH RESULTS ====================
 function renderSearchResults(list){
-
     const container = document.getElementById("productContainer");
-    container.innerHTML="";
-
+    container.innerHTML = "";
     container.style.display="flex";
     container.style.flexWrap="wrap";
     container.style.gap="10px";
 
-    if(list.length===0){
-        container.innerHTML="<h3>No products found</h3>";
-        return;
-    }
+    if(list.length===0){ container.innerHTML="<h3>No products found</h3>"; return; }
 
     list.forEach(p=>{
-        const productCard = document.createElement("div");
-        productCard.style.flex="0 0 19%";
-        productCard.style.padding="10px";
+        const card = document.createElement("div");
+        card.style.flex="0 0 19%";
+        card.style.padding="10px";
 
-        productCard.innerHTML = `
-        <div class="product border p-2 h-100" style="font-size:12px;">
-            <div class="product-img text-center" style="cursor:pointer;" onclick="showProductModal(${p.id})">
+        card.innerHTML = `
+        <div class="product border p-2 h-100">
+            <div class="product-img text-center" onclick="showProductModal(${p.id})" style="position:relative; cursor:pointer;">
                 <img src="${p.image}" class="img-fluid" style="max-height:120px; object-fit:contain;">
             </div>
-
             <div class="product-body mt-2">
-                <p style="font-size:10px;">${categories[p.categoryId]}</p>
-                <h3 style="font-size:12px;">${p.name}</h3>
-                <h4 style="font-size:12px;">
-                    Ksh ${p.price.toLocaleString()}
-                    <del style="font-size:10px;color:#999;">
-                    Ksh ${p.oldPrice.toLocaleString()}
-                    </del>
+                <p>${categories[p.categoryId]}</p>
+                <h3>${p.name}</h3>
+                <h4>
+                    Ksh ${p.price.toLocaleString()} 
+                    <del style="color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
                 </h4>
             </div>
-
             <div class="text-center mt-2">
                 <button onclick="addToCart(${p.id})">🛒</button>
                 <button onclick="sendToWhatsApp(${p.id})">Buy Now</button>
             </div>
-        </div>
-        `;
-
-        container.appendChild(productCard);
+        </div>`;
+        container.appendChild(card);
     });
 }
 
-// Load all products on page load
+// ==================== INITIAL LOAD ====================
 window.onload = () => loadProducts("all");
