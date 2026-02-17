@@ -85,7 +85,6 @@ const categoryMap = {
   "camera": [9],
   "accessory": [3]
 };
-
 // ==================== LOAD PRODUCTS ====================
 function loadProducts(category = "all") {
     const container = document.getElementById("productContainer");
@@ -109,16 +108,16 @@ function loadProducts(category = "all") {
             <div class="product-img" onclick="showProductModal(${p.id})" style="position:relative; cursor:pointer;">
                 <img src="${p.image}" class="img-fluid" style="max-height:150px; object-fit:contain;">
                 <div class="floating-buttons" style="position:absolute; bottom:5px; right:5px; display:flex; gap:5px;">
-                    <button onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
-                    <button onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
+                    <button class="cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
+                    <button class="buy-btn" onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
                 </div>
             </div>
             <div class="product-body mt-2">
                 <p>${categories[p.categoryId]}</p>
                 <h3>${p.name}</h3>
-                <h4>
+                <h4 style="color:orange;">
                     Ksh ${p.price.toLocaleString()} 
-                    <del style="color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                    <del style="color:orange;">Ksh ${p.oldPrice.toLocaleString()}</del>
                 </h4>
             </div>
         </div>`;
@@ -223,14 +222,14 @@ function showProductModal(productId) {
         <div style="flex:1 1 55%;">
             <h2>${product.name}</h2>
             <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
-            <h3 style="color:green;">Ksh ${product.price.toLocaleString()}</h3>
-            <del style="color:#999;">Ksh ${product.oldPrice.toLocaleString()}</del>
+            <h3 style="color:orange;">Ksh ${product.price.toLocaleString()}</h3>
+            <del style="color:orange;">Ksh ${product.oldPrice.toLocaleString()}</del>
             <p style="margin-top:10px;">${product.description}</p>
             <h4>Features & Specs</h4>
             ${specsHtml}
-            <div style="margin-top:20px;">
-                <button onclick="addToCart(${product.id})">🛒 Add to Cart</button>
-                <button onclick="sendToWhatsApp(${product.id})">Buy Now</button>
+            <div style="margin-top:20px; display:flex; gap:10px;">
+                <button class="modal-cart-btn" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
+                <button class="modal-buy-btn" onclick="sendToWhatsApp(${product.id})">Buy Now</button>
             </div>
         </div>
     </div>`;
@@ -301,21 +300,21 @@ function renderSearchResults(list){
         card.style.padding="10px";
 
         card.innerHTML = `
-        <div class="product border p-2 h-100">
-            <div class="product-img text-center" onclick="showProductModal(${p.id})" style="position:relative; cursor:pointer;">
+        <div class="product border p-2 h-100 product-card">
+            <div class="product-img" onclick="showProductModal(${p.id})" style="position:relative; cursor:pointer;">
                 <img src="${p.image}" class="img-fluid" style="max-height:120px; object-fit:contain;">
+                <div class="floating-buttons" style="position:absolute; bottom:5px; right:5px; display:flex; gap:5px;">
+                    <button class="cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
+                    <button class="buy-btn" onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
+                </div>
             </div>
             <div class="product-body mt-2">
                 <p>${categories[p.categoryId]}</p>
                 <h3>${p.name}</h3>
-                <h4>
+                <h4 style="color:orange;">
                     Ksh ${p.price.toLocaleString()} 
-                    <del style="color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                    <del style="color:orange;">Ksh ${p.oldPrice.toLocaleString()}</del>
                 </h4>
-            </div>
-            <div class="text-center mt-2">
-                <button onclick="addToCart(${p.id})">🛒</button>
-                <button onclick="sendToWhatsApp(${p.id})">Buy Now</button>
             </div>
         </div>`;
         container.appendChild(card);
