@@ -115,9 +115,9 @@ function loadProducts(category = "all") {
             <div class="product-body mt-2">
                 <p>${categories[p.categoryId]}</p>
                 <h3>${p.name}</h3>
-                <h4 style="color:orange;">
+                <h4 style="color: #ff9800;">
                     Ksh ${p.price.toLocaleString()} 
-                    <del style="color:orange;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                    <del style="color: #ff9800;">Ksh ${p.oldPrice.toLocaleString()}</del>
                 </h4>
             </div>
         </div>`;
@@ -222,8 +222,8 @@ function showProductModal(productId) {
         <div style="flex:1 1 55%;">
             <h2>${product.name}</h2>
             <p style="font-size:14px; color:#666;">Category: ${categories[product.categoryId]}</p>
-            <h3 style="color:orange;">Ksh ${product.price.toLocaleString()}</h3>
-            <del style="color:orange;">Ksh ${product.oldPrice.toLocaleString()}</del>
+            <h3 style="color: #ff9800;">Ksh ${product.price.toLocaleString()}</h3>
+            <del style="color: #ff9800;">Ksh ${product.oldPrice.toLocaleString()}</del>
             <p style="margin-top:10px;">${product.description}</p>
             <h4>Features & Specs</h4>
             ${specsHtml}
@@ -311,9 +311,9 @@ function renderSearchResults(list){
             <div class="product-body mt-2">
                 <p>${categories[p.categoryId]}</p>
                 <h3>${p.name}</h3>
-                <h4 style="color:orange;">
+                <h4 style="color: #ff9800;">
                     Ksh ${p.price.toLocaleString()} 
-                    <del style="color:orange;">Ksh ${p.oldPrice.toLocaleString()}</del>
+                    <del style="color: #ff9800;">Ksh ${p.oldPrice.toLocaleString()}</del>
                 </h4>
             </div>
         </div>`;
