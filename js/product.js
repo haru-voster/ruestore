@@ -112,25 +112,31 @@ function loadProducts(category = "all") {
         productCard.style.boxSizing = "border-box";
 
         productCard.innerHTML = `
-            <div class="product border p-2 h-100" style="font-size:12px;">
-                <div class="product-img text-center" style="cursor:pointer;" onclick="showProductModal(${p.id})">
-                    <img src="${p.image}" class="img-fluid" style="max-height:120px; object-fit:contain;">
+                <div class="product border p-2 h-100 product-card">
+
+                    <div class="product-img" onclick="showProductModal(${p.id})">
+
+                        <img src="${p.image}" class="img-fluid">
+
+                        <div class="floating-buttons">
+                            <button class="cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">🛒</button>
+                            <button class="buy-btn" onclick="event.stopPropagation(); sendToWhatsApp(${p.id})">Buy</button>
+                        </div>
+
+                    </div>
+
+                    <div class="product-body mt-2">
+                        <p class="product-category">${categories[p.categoryId]}</p>
+                        <h3 class="product-name">${p.name}</h3>
+                        <h4 class="product-price">
+                            Ksh ${p.price.toLocaleString()}
+                            <del>Ksh ${p.oldPrice.toLocaleString()}</del>
+                        </h4>
+                    </div>
+
                 </div>
-                <div class="product-body mt-2">
-                    <p class="product-category" style="margin:0; font-size:10px;">${categories[p.categoryId]}</p>
-                    <h3 class="product-name" style="margin:2px 0; font-size:12px;">${p.name}</h3>
-                    <h4 class="product-price" style="margin:2px 0; font-size:12px;">
-                        Ksh ${p.price.toLocaleString()}
-                        <del style="font-size:10px; color:#999;">Ksh ${p.oldPrice.toLocaleString()}</del>
-                    </h4>
-                </div>
-                <div class="text-center mt-2">
-                    <button onclick="addToCart(${p.id})" style="padding:4px 8px; font-size:12px;">🛒</button>
-                    <button onclick="sendToWhatsApp(${p.id})" style="padding:4px 8px; font-size:12px;">Buy Now
-</button>
-                </div>
-            </div>
-        `;
+                `;
+
         container.appendChild(productCard);
     });
 
@@ -247,8 +253,7 @@ function showProductModal(productId) {
                 ${specsHtml}
                 <div style="margin-top:10px;">
                     <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒</button>
-                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Buy Now
-</button>
+                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Buy Now</button>
                 </div>
             </div>
         </div>

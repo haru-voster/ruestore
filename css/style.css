@@ -51,6 +51,80 @@ Table OF Contents
 	01 -> GENERAL
 ===========================================================*/
 
+
+/* floting button nad cart */
+/* image container */
+.product-img{
+    position: relative;
+    text-align:center;
+    cursor:pointer;
+}
+
+/* image */
+.product-img img{
+    max-height:130px;
+    object-fit:contain;
+    width:100%;
+}
+
+/* floating buttons container */
+.floating-buttons{
+    position:absolute;
+    bottom:8px;
+    right:8px;
+    display:flex;
+    gap:6px;
+}
+
+/* cart button */
+.cart-btn{
+    background:#ff9800;
+    color:white;
+    border:none;
+    border-radius:50%;
+    width:34px;
+    height:34px;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    transition:0.2s;
+}
+
+.cart-btn:hover{
+    transform:scale(1.1);
+    background:#e68900;
+}
+
+/* buy button */
+.buy-btn{
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:20px;
+    padding:5px 12px;
+    font-size:12px;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    transition:0.2s;
+}
+
+.buy-btn:hover{
+    transform:scale(1.05);
+    background:#0056b3;
+}
+
+/* mobile responsiveness */
+@media(max-width:768px){
+    .floating-buttons{
+        bottom:5px;
+        right:5px;
+    }
+    .buy-btn{
+        padding:4px 10px;
+        font-size:11px;
+    }
+}
+
 /*----------------------------*\
 	Typography
 \*----------------------------*/
