@@ -251,10 +251,16 @@ function showProductModal(productId) {
                 <p style="margin-top:10px;">${product.description}</p>
                 <h4>Features & Specs</h4>
                 ${specsHtml}
-                <div style="margin-top:10px;">
-                    <button onclick="addToCart(${product.id})" style="padding:6px 12px; margin-right:5px;">🛒</button>
-                    <button onclick="sendToWhatsApp(${product.id})" style="padding:6px 12px;">Buy Now</button>
-                </div>
+               <div style="position: relative; margin-top: 20px;">
+
+                <!-- Cart Button -->
+                <button class="modal-cart-btn" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
+
+                <!-- Buy Now / WhatsApp -->
+                <button class="modal-buy-btn" onclick="sendToWhatsApp(${product.id})">Buy Now</button>
+
+            </div>
+
             </div>
         </div>
     `;

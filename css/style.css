@@ -213,6 +213,48 @@ Table OF Contents
     background-color: rgba(255, 140, 0, 0.9); /* darker orange on hover */
 }
 
+/* cart2 stlinging and buy */
+/* Modal buttons container */
+.modal-cart-btn, .modal-buy-btn {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: 0.2s;
+    margin-right: 8px;
+}
+
+/* Cart Button */
+.modal-cart-btn {
+    background: #ff9800; /* Orange */
+}
+
+.modal-cart-btn:hover {
+    background: #e68900;
+    transform: scale(1.05);
+}
+
+/* Buy Now Button */
+.modal-buy-btn {
+    background: #007bff; /* Blue */
+}
+
+.modal-buy-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Float to bottom right of modal info on larger screens */
+@media(min-width: 768px){
+    div[style*="position: relative"] {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+}
 
 /* main */
 
