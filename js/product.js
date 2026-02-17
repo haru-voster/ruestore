@@ -258,5 +258,126 @@ function showProductModal(productId) {
     document.getElementById("closeModal").onclick = () => { modal.style.display = "none"; };
 }
 
+/// serach filter
+
+/* ================= SEARCH SYSTEM (NON-DESTRUCTIVE) ================= */
+
+// live suggestions dropdown
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+    // create suggestion box
+    const suggestionBox = document.createElement("div");
+    suggestionBox.style.position = "absolute";
+    suggestionBox.style.background = "#fff";
+    suggestionBox.style.border = "1px solid #ddd";
+    suggestionBox.style.width = searchInput.offsetWidth + "px";
+    suggestionBox.style.zIndex = "999";
+    suggestionBox.style.maxHeight = "200px";
+    suggestionBox.style.overflowY = "auto";
+    suggestionBox.style.display = "none";
+    searchInput.parentNode.appendChild(suggestionBox);
+
+    // typing event
+    searchInput.addEventListener("keyup", function () {
+
+        const text = this.value.toLowerCase().trim();
+
+        suggestionBox.innerHTML = "";
+
+        if (!text) {
+            suggestionBox.style.display = "none";
+            loadProducts("all");
+            return;
+        }
+
+        const matches = products.filter(p =>
+            p.name.toLowerCase().includes(text) ||
+            (p.description && p.description.toLowerCase().includes(text)) ||
+            categories[p.categoryId].toLowerCase().includes(text)
+        );
+
+        // show results on dashboard
+        renderSearchResults(matches);
+
+        // suggestions list
+        matches.slice(0,5).forEach(p => {
+            const item = document.createElement("div");
+            item.innerText = p.name;
+            item.style.padding = "6px";
+            item.style.cursor = "pointer";
+
+            item.onmouseenter = () => item.style.background="#f1f1f1";
+            item.onmouseleave = () => item.style.background="#fff";
+
+            item.onclick = () => {
+                searchInput.value = p.name;
+                suggestionBox.style.display="none";
+                renderSearchResults([p]);
+            };
+
+            suggestionBox.appendChild(item);
+        });
+
+        suggestionBox.style.display = matches.length ? "block" : "none";
+    });
+
+    // hide suggestions when clicking outside
+    document.addEventListener("click", e=>{
+        if(!searchInput.contains(e.target))
+            suggestionBox.style.display="none";
+    });
+}
+
+
+// render search results using SAME layout as loadProducts
+function renderSearchResults(list){
+
+    const container = document.getElementById("productContainer");
+    container.innerHTML="";
+
+    container.style.display="flex";
+    container.style.flexWrap="wrap";
+    container.style.gap="10px";
+
+    if(list.length===0){
+        container.innerHTML="<h3>No products found</h3>";
+        return;
+    }
+
+    list.forEach(p=>{
+        const productCard = document.createElement("div");
+        productCard.style.flex="0 0 19%";
+        productCard.style.padding="10px";
+
+        productCard.innerHTML = `
+        <div class="product border p-2 h-100" style="font-size:12px;">
+            <div class="product-img text-center" style="cursor:pointer;" onclick="showProductModal(${p.id})">
+                <img src="${p.image}" class="img-fluid" style="max-height:120px; object-fit:contain;">
+            </div>
+
+            <div class="product-body mt-2">
+                <p style="font-size:10px;">${categories[p.categoryId]}</p>
+                <h3 style="font-size:12px;">${p.name}</h3>
+                <h4 style="font-size:12px;">
+                    Ksh ${p.price.toLocaleString()}
+                    <del style="font-size:10px;color:#999;">
+                    Ksh ${p.oldPrice.toLocaleString()}
+                    </del>
+                </h4>
+            </div>
+
+            <div class="text-center mt-2">
+                <button onclick="addToCart(${p.id})">🛒</button>
+                <button onclick="sendToWhatsApp(${p.id})">Buy Now</button>
+            </div>
+        </div>
+        `;
+
+        container.appendChild(productCard);
+    });
+}
+
 // Load all products on page load
 window.onload = () => loadProducts("all");

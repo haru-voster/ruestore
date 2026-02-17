@@ -70,13 +70,16 @@
 <div class="col-md-6">
 <div class="header-search">
 <form onsubmit="return false;">
-<select class="input-select">
-<option value="all">All Categories</option>
-<option value="desktop">Desktop</option>
-<option value="laptop">Laptop</option>
-<option value="phone">Phone</option>
-<option value="camera">Camera</option>
-<option value="accessory">Accessory</option>
+<select class="input-select" onchange="loadProducts(this.value)">
+
+  <option value="all">All Categories</option>
+  <option value="desktop">Desktops</option>
+  <option value="laptop">Laptops</option>
+  <option value="phone">Phones</option>
+  <option value="camera">Cameras</option>
+  <option value="accessory">Accessories</option>
+
+
 </select>
 <input class="input" id="searchBox" placeholder="Search here">
 <button class="search-btn" onclick="loadProducts()">Search</button>
