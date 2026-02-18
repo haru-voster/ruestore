@@ -1,13 +1,17 @@
 const categories = {
-  1: "Laptops",
-  2: "Desktops",
-  3: "Accessories",
-  4: "Printers",
-  5: "Projectors",
+  1: "Laptop",
+  2: "Desktop",
+  3: "Accessory",
+  4: "Printer",
+  5: "Projector",
   6: "Network",
   7: "Toners",
-  8: "Smartphones",
-  9: "Cameras"
+  8: "Smartphone",
+  9: "Cameras",
+  10: "Laptop Bag",
+  11: "Crossbody Bag",
+  12: "Backpack",
+  13: "Chest Bag"
 };
 
 const products = [
