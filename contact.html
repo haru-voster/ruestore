@@ -72,7 +72,7 @@
                   <div>
                     <h3 class="contact-item-title">Whatsapp/Call</h3>
 
-                    <a href="#" onclick="sendWhatsAppMessage()" color="green"><i class="fa fa-whatsapp">+254708466793 </i></a>
+                    <a href="" onclick="sendWhatsAppMessage()" color="#e68900"><i class="fa fa-whatsapp">+254708466793 </i></a>
                   </div>
 
                 </li>
@@ -218,4 +218,12 @@
 }
 
     </style>
+    <script>
+        function sendWhatsAppMessage() {
+            const phoneNumber = '+254708466793';
+            const message = encodeURIComponent('Hello, I would like to inquire about your products.');
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(url, '_blank');
+        }
+        </script>
 </html>
