@@ -340,3 +340,5 @@ function renderSearchResults(list){
 
 // ==================== INITIAL LOAD ====================
 window.onload = () => loadProducts("all");
+
+// added json
