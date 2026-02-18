@@ -128,8 +128,11 @@
 
 
 <nav id="navigation">
+	<button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
 <div class="container">
-<ul class="main-nav nav navbar-nav">
+
+<ul class="main-nav nav navbar-nav" id="mainMenu">
+
 <li class="active"><a href="#" onclick="loadProducts('all')">Home</a></li>
 <li><a href="#" onclick="loadProducts('desktop')">Desktops</a></li>
 <li><a href="#" onclick="loadProducts('laptop')">Laptops</a></li>
@@ -137,13 +140,36 @@
 <li><a href="#" onclick="loadProducts('phone')">Smartphones</a></li>
 <li><a href="#" onclick="loadProducts('camera')">Cameras</a></li>
 <li><a href="#" onclick="loadProducts('accessory')">Accessories</a></li>
-<li><a href= "#" onclick="loadProducts('laptopbag')">Laptop Bags</a></li>
-<li><a href= "#" onclick="loadProducts('backpacks')">Backpacks</a></li>
-<li><a href= "#" onclick="loadProducts('chestbag')">Chest Bags</a></li>
-<li><a href= "#" onclick="loadProducts('crossbody')">Crossbody Bags</a></li>
+<li><a href="#" onclick="loadProducts('laptopbag')">Laptop Bags</a></li>
+<li><a href="#" onclick="loadProducts('backpacks')">Backpacks</a></li>
+<li><a href="#" onclick="loadProducts('chestbag')">Chest Bags</a></li>
+<li><a href="#" onclick="loadProducts('crossbody')">Crossbody Bags</a></li>
+
 </ul>
 </div>
 </nav>
+<script>
+function toggleMenu(){
+    const menu = document.getElementById("mainMenu");
+    const btn = document.querySelector(".menu-toggle-btn");
+
+    menu.classList.toggle("show");
+
+    if(menu.classList.contains("show")){
+        btn.textContent="✖";
+    }else{
+        btn.textContent="☰";
+    }
+}
+
+document.querySelectorAll("#mainMenu a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        document.getElementById("mainMenu").classList.remove("show");
+        document.querySelector(".menu-toggle-btn").textContent="☰";
+    });
+});
+</script>
+
 
 
 <div class="section">

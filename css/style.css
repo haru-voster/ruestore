@@ -113,17 +113,155 @@ Table OF Contents
     background:#0056b3;
 }
 
-/* mobile responsiveness */
-@media(max-width:768px){
-    .floating-buttons{
-        bottom:5px;
-        right:5px;
+/* ==================== MOBILE (small screens) ==================== */
+@media (max-width: 480px) {
+    /* toggle menu for small mobile screens */
+    #mainMenu {
+        position: absolute;
+        top: 60px;
+        right: 15px;
+        width: 180px;
+        display: none;
+        flex-direction: column;
+        background: #2c3e50;
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 9999;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     }
-    .buy-btn{
-        padding:4px 10px;
-        font-size:11px;
+
+    #mainMenu.show {
+        display: flex;
+    }
+
+    #mainMenu li a {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 }
+
+/* ==================== TABLETS ==================== */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* toggle menu for tablets */
+    #mainMenu {
+        position: absolute;
+        top: 60px;
+        right: 15px;
+        width: 200px;
+        display: none;
+        flex-direction: column;
+        background: #2c3e50;
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 9999;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    #mainMenu.show {
+        display: flex;
+    }
+
+    #mainMenu li a {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}
+
+/* ==================== LAPTOPS / DESKTOPS ==================== */
+@media (min-width: 769px) {
+    /* horizontal menu for large screens */
+    #mainMenu {
+        position: static;        /* remove absolute */
+        width: auto;             /* auto width */
+        display: flex !important;/* always visible */
+        flex-direction: row;     /* horizontal layout */
+        background: transparent; /* remove mobile background */
+        box-shadow: none;
+        top: auto;
+        right: auto;
+    }
+
+    #mainMenu li a {
+        padding: 10px 20px;
+        border: none;
+        color: #2c3e50;
+    }
+
+    #mainMenu li a:hover {
+        background: #ecf0f1;
+        color: #2c3e50;
+    }
+}
+
+/* toggle menu (mobile) */
+#mainMenu {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    width: 200px;
+    background: #2c3e50;
+    border-radius: 8px;
+    overflow: hidden;
+
+    display: none;
+    flex-direction: column;
+
+    z-index: 9999;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#mainMenu.show {
+    display: flex;
+}
+
+#mainMenu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#mainMenu li a {
+    display: block;
+    padding: 12px 14px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+#mainMenu li:last-child a {
+    border-bottom: none;
+}
+
+#mainMenu li a:hover {
+    background: #34495e;
+}
+
+/* ===== Large screen styles ===== */
+@media (min-width: 768px) {
+    #mainMenu {
+        position: static;        /* remove absolute */
+        width: auto;             /* full width auto */
+        display: flex !important;/* always show */
+        flex-direction: row;     /* horizontal layout */
+        background: transparent; /* remove mobile background */
+        box-shadow: none;
+        top: auto;
+        right: auto;
+    }
+
+    #mainMenu li a {
+        padding: 10px 20px;
+        border: none;
+        color: #2c3e50;          /* text color for desktop */
+    }
+
+    #mainMenu li a:hover {
+        background: #ecf0f1;
+        color: #2c3e50;
+    }
+}
+
 
 /*----------------------------*\
 	Typography
