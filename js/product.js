@@ -202,22 +202,38 @@ function updateCartUI() {
 function sendToWhatsApp(productId = null) {
     let message = "Hello, I want to order the following items:\n\n";
 
+    const phoneNumbers = [
+        "254708466793",
+        "254724901981"
+    ];
+
+    // Build message
     if (productId) {
         const p = products.find(x => x.id === productId);
         if (!p) return;
+
         message += `Name: ${p.name}\nPrice: Ksh ${p.price.toLocaleString()}\nDescription: ${p.description}\nImage: ${window.location.origin}/${p.image}`;
     } else {
         if (cart.length === 0) return alert("Your cart is empty!");
-        cart.forEach(item => message += `${item.name} x ${item.qty} - Ksh ${(item.price * item.qty).toLocaleString()}\n`);
+
+        cart.forEach(item =>
+            message += `${item.name} x ${item.qty} - Ksh ${(item.price * item.qty).toLocaleString()}\n`
+        );
+
         const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
         message += `\nTotal: Ksh ${total.toLocaleString()}`;
     }
 
-    const phoneNumber = "254708466793";
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, "_blank");
-}
+    const encodedMessage = encodeURIComponent(message);
 
+    // Send to BOTH numbers automatically
+    phoneNumbers.forEach((number, index) => {
+        setTimeout(() => {
+            const url = `https://wa.me/${number}?text=${encodedMessage}`;
+            window.open(url, "_blank");
+        }, index * 500); // small delay avoids popup blocking
+    });
+}
 // ==================== PRODUCT MODAL ====================
 function showProductModal(productId) {
     const product = products.find(p => p.id === productId);
