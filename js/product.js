@@ -81,7 +81,12 @@ const products = [
   {id:145,name:"Laptop Backpack",price:1850,oldPrice:2500,categoryId:10,image:"img/laptopbag.png",description:"Durable laptop backpack with padded compartments for device protection", specs:{}},
   {id:146,name:"Crossbody Bag",price:650,oldPrice:1200,categoryId:11,image:"img/crossbag.png",description:"Lightweight crossbody bag with secure zipper pockets for essentials", specs:{}},
   {id:147,name:"Messenger Shoulder Bag",price:980,oldPrice:1500,categoryId:12,image:"img/messengerbag.png",description:"Stylish messenger bag ideal for work, school, and travel use", specs:{}},
-  {id:148,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack.png",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}}
+  {id:148,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack.png",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
+  {id:144,name:"Men's Chest Bag",price:1000,oldPrice:1400,categoryId:13,image:"img/chestbag.webp",description:"Charging port PU leather chest bag, stylish and compact for daily travel", specs:{}},
+  {id:145,name:"Laptop Backpack",price:1850,oldPrice:2500,categoryId:10,image:"img/laptopbag.png",description:"Durable laptop backpack with padded compartments for device protection", specs:{}},
+  {id:146,name:"Crossbody Bag",price:650,oldPrice:1200,categoryId:11,image:"img/crossbag.png",description:"Lightweight crossbody bag with secure zipper pockets for essentials", specs:{}},
+  {id:147,name:"Messenger Shoulder Bag",price:980,oldPrice:1500,categoryId:12,image:"img/messengerbag.png",description:"Stylish messenger bag ideal for work, school, and travel use", specs:{}},
+  {id:148,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack.png",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
 ];
 
 
