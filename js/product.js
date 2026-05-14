@@ -17,18 +17,18 @@ const categories = {
 const products = [
   // ==================== LAPTOPS ====================
   {id:101,name:"HP Envy X360 Brand",price:170000,oldPrice:180000,categoryId:1,image:"img/hp envy.jpg",description:"Intel Iris Xe Graphics, Backlight Keyboard, 14 inch FHD, 13th Gen Core i7, 16GB, 1TB SSD", specs:{Processor:"Intel Core i7 13th Gen", RAM:"16GB", Storage:"1TB SSD", Display:"14-inch FHD", Graphics:"Intel Iris Xe"}},
-  {id:102,name:"HP EliteBook 840 G5",price:30000,oldPrice:35000,categoryId:1,image:"img/new2.jpg",description:"Intel Core i7 10th Gen, 14 FHD 840 G5 - 8GB / 256GB", specs:{Processor:"Intel Core i7 10th Gen", RAM:"8GB", Storage:"256GB SSD", Display:"14-inch FHD", Graphics:"Intel HD"}},
-  {id:103,name:"HP EliteBook 840 G7",price:45000,oldPrice:50000,categoryId:1,image:"img/new.webp",description:"Intel Core i7 10th Gen, 14 FHD 840 G7 - 16GB / 512GB", specs:{Processor:"Intel Core i7 10th Gen", RAM:"16GB", Storage:"512GB SSD", Display:"14-inch FHD", Graphics:"Intel HD"}},
-  {id:104,name:"Lenovo IdeaPad Flex 5",price:39000,oldPrice:45000,categoryId:1,image:"img/lenovo2.webp",description:"Integrated Intel Iris Xe graphics 512SSD / 16GB", specs:{Processor:"Intel Core i5 11th Gen", RAM:"16GB", Storage:"512GB SSD", Display:"14-inch FHD", Graphics:"Intel Iris Xe"}},
+  {id:102,name:"HP EliteBook 840 G5",price:32000,oldPrice:35000,categoryId:1,image:"img/new2.jpg",description:"Intel Core i7 10th Gen, 14 FHD 840 G5 - 8GB / 256GB", specs:{Processor:"Intel Core i7 10th Gen", RAM:"8GB", Storage:"256GB SSD", Display:"14-inch FHD", Graphics:"Intel HD"}},
+  {id:103,name:"HP EliteBook 840 G7",price:46000,oldPrice:50000,categoryId:1,image:"img/new.webp",description:"Intel Core i7 10th Gen, 14 FHD 840 G7 - 16GB / 512GB", specs:{Processor:"Intel Core i7 10th Gen", RAM:"16GB", Storage:"512GB SSD", Display:"14-inch FHD", Graphics:"Intel HD"}},
+  {id:104,name:"Lenovo IdeaPad Flex 5",price:40000,oldPrice:45000,categoryId:1,image:"img/lenovo2.webp",description:"Integrated Intel Iris Xe graphics 512SSD / 16GB", specs:{Processor:"Intel Core i5 11th Gen", RAM:"16GB", Storage:"512GB SSD", Display:"14-inch FHD", Graphics:"Intel Iris Xe"}},
   {id:105,name:"Lenovo Yoga X1",price:22999,oldPrice:25000,categoryId:1,image:"img/lenovo.webp",description:"Thinkpad X1 Yoga 256/8GB RAM Gen5 14 inch FHD, Touchscreen Laptop", specs:{Processor:"Intel Core i5 Gen5", RAM:"8GB", Storage:"256GB SSD", Display:"14-inch FHD Touch", Graphics:"Intel HD"}},
   {id:106,name:"Dell Latitude 7490",price:20999,oldPrice:25000,categoryId:1,image:"img/dell.jpg",description:"Intel Core i5, 8GB RAM, 256GB SSD, 8th Gen, 14 inch Display", specs:{Processor:"Intel Core i5 8th Gen", RAM:"8GB", Storage:"256GB SSD", Display:"14-inch FHD", Graphics:"Intel HD"}},
   {id:107,name:"Dell Precision 5570",price:34999,oldPrice:40000,categoryId:1,image:"img/dell.jpeg",description:"16GB/512GB, Core i7 8th Gen, Intel Processor 1.6-1.8GHz", specs:{Processor:"Intel Core i7 8th Gen", RAM:"16GB", Storage:"512GB SSD", Display:"15.6-inch FHD", Graphics:"Intel UHD"}},
-  {id:108,name:"Macbook Pro A1708",price:29000,oldPrice:35000,categoryId:1,image:"img/Macbook2017.webp",description:"Intel Core i5-6360U, 8GB RAM, 256GB SSD, 13.3 LED IPS, Intel Iris Graphics", specs:{Processor:"Intel Core i5-6360U", RAM:"8GB", Storage:"256GB SSD", Display:"13.3-inch LED IPS", Graphics:"Intel Iris"}},
+  {id:108,name:"Macbook Pro A1708",price:32000,oldPrice:35000,categoryId:1,image:"img/Macbook2017.webp",description:"Intel Core i5-6360U, 8GB RAM, 256GB SSD, 13.3 LED IPS, Intel Iris Graphics", specs:{Processor:"Intel Core i5-6360U", RAM:"8GB", Storage:"256GB SSD", Display:"13.3-inch LED IPS", Graphics:"Intel Iris"}},
   {id:109,name:"Macbook Pro 13 Retina",price:88000,oldPrice:95000,categoryId:1,image:"img/mac1.jpg",description:"Intel Core I7 13th gen, 32GB RAM, 512GB SSD, Retina Display", specs:{Processor:"Intel Core i7 13th Gen", RAM:"32GB", Storage:"512GB SSD", Display:"13-inch Retina", Graphics:"Intel Iris"}},
 
   // ==================== DESKTOPS ====================
   {id:110,name:"Dell Optiplex 7040 19inch",price:24999,oldPrice:28000,categoryId:2,image:"img/dellopti.webp",description:"Intel i5-6500, 8GB RAM, 500GB HDD", specs:{Processor:"Intel Core i5-6500", RAM:"8GB", Storage:"500GB HDD", Graphics:"Intel HD", Display:"19-inch"}},
-  {id:111,name:"HP Desktop 19inch",price:14500,oldPrice:18000,categoryId:2,image:"img/hp-desk.webp",description:"Intel Core i5 3.40GHz, 4GB RAM, 500GB HDD, 19\" Monitor, Keyboard & Mouse", specs:{Processor:"Intel Core i5 3.4GHz", RAM:"4GB", Storage:"500GB HDD", Graphics:"Intel HD", Display:"19-inch"}},
+  {id:111,name:"HP Desktop 19inch",price:15500,oldPrice:16000,categoryId:2,image:"img/hp-desk.webp",description:"Intel Core i5 3.40GHz, 4GB RAM, 500GB HDD, 19\" Monitor, Keyboard & Mouse", specs:{Processor:"Intel Core i5 3.4GHz", RAM:"4GB", Storage:"500GB HDD", Graphics:"Intel HD", Display:"19-inch"}},
   {id:112,name:"All-in-One HP 205",price:50000,oldPrice:55000,categoryId:2,image:"img/hp-all.webp",description:"22\" FHD, AMD Ryzen 3050U, 4GB RAM, 1TB HDD, Windows 10 Pro", specs:{Processor:"AMD Ryzen 3050U", RAM:"4GB", Storage:"1TB HDD", Graphics:"AMD Radeon Vega 8", Display:"22-inch FHD"}},
   {id:113,name:"Lenovo Mini-PC M710q",price:18500,oldPrice:20000,categoryId:2,image:"img/lenovo-mini.jpg",description:"8GB RAM, 128GB SSD, Intel i5", specs:{Processor:"Intel Core i5", RAM:"8GB", Storage:"128GB SSD", Graphics:"Intel HD", Display:"None"}},
   {id:114,name:"HP Mini-PC EliteDesk 705 G4",price:18000,oldPrice:20000,categoryId:2,image:"img/hpdsk.webp",description:"Ryzen 5 2400G, 16GB RAM, 256GB SSD", specs:{Processor:"AMD Ryzen 5 2400G", RAM:"16GB", Storage:"256GB SSD", Graphics:"AMD Radeon Vega 11", Display:"None"}},
@@ -85,15 +85,21 @@ const products = [
   {id:149,name:"Men's Chest Bag",price:1000,oldPrice:1400,categoryId:13,image:"img/chestbag.png",description:"Charging port PU leather chest bag, stylish and compact for daily travel", specs:{}},
   {id:150,name:"Laptop Backpack",price:1700,oldPrice:2000,categoryId:10,image:"img/laptopbag1.jpg",description:"Perfectly sized to hold laptops up to 14 inches, the backpack features multiple compartments for easy organization of your daily essentials", specs:{}},
   {id:151,name:"Crossbody Bag",price:1650,oldPrice:1950,categoryId:11,image:"img/crossbag.png",description:"mygreen Vertical Canvas Messenger Bag, Unisex Casual leather Shoulder Bag Satchel Crossbody Bag for Outdoor Activities, Travel", specs:{}},
-  {id:152,name:"Messenger Shoulder Bag",price:980,oldPrice:1500,categoryId:12,image:"img/messenger1.webp",description:"Stylish messenger bag ideal for work, school, and travel use", specs:{}},
+  {id:152,name:"Messenger Shoulder Bag",price:1800,oldPrice:2200,categoryId:12,image:"img/messenger1.webp",description:"Stylish messenger bag ideal for work, school, and travel use", specs:{}},
 {id:152,name:"Messenger Shoulder Bag",price:980,oldPrice:1500,categoryId:12,image:"img/messenger2.webp",description:"Personalized Messenger Bag - unisex", specs:{}},
   {id:153,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack2.webp",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
-   {id:153,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
-    {id:153,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack4.webp",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
+   {id:154,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
+    {id:155,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack4.webp",description:"Spacious leisure backpack with multiple compartments and water-resistant fabric", specs:{}},
+    {id:156,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
+    {id:157,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
+    {id:158,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
+    {id:159,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
+    {id:160,name:"Casual Backpack",price:1200,oldPrice:1800,categoryId:12,image:"img/backpack3.webp",description:"Spacious leisure backpack for unisex", specs:{}},
 ];
 
 
 // ==================== CART ====================
+
 let cart = [];
 
 const categoryMap = {
